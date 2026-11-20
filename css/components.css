@@ -1,9 +1,12 @@
 /* ! ------ BOTÓN DE IDIOMA ------ */
 .btn-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     padding: 0.76rem 0.9rem;
     border-radius: 0.85rem;
     border: 1px solid var(--slate-border);
-    background: rgba(67, 72, 82, 0.25);
+    background: rgba(22, 26, 32, 0.95);
     color: var(--mg-cream);
     font: 700 0.78rem var(--font-mono);
     letter-spacing: 0.08em;
@@ -17,6 +20,13 @@
     transform: translate3d(0, -2px, 0);
     border-color: var(--bordeaux-border-bright);
     background: rgba(47, 107, 59, 0.35);
+}
+
+.lang-flag {
+    display: block;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(250, 249, 242, 0.18);
+    flex: 0 0 auto;
 }
 
 /* ! ------ TÍTULOS Y CERTIFICADOS ------ */
@@ -38,7 +48,7 @@
     padding: 1.5rem;
     border-radius: 1.25rem;
     border: 1px solid var(--slate-border);
-    background: linear-gradient(155deg, rgba(67, 72, 82, 0.2), rgba(10, 14, 12, 0.96));
+    background: linear-gradient(155deg, rgba(22, 26, 32, 0.97), rgba(9, 12, 10, 0.99));
     transform: translate3d(0, 0, 0);
     transition: transform 0.5s var(--ease-fluid), border-color 0.48s var(--ease-fluid), box-shadow 0.5s var(--ease-fluid);
 }

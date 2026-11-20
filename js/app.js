@@ -1,23 +1,57 @@
-// ------ RUTAS DE DATOS JSON ------ //
-const RUTAS_DATOS = {
-    demos: "./data/demos.json",
-    trayectoria: "./data/trayectoria.json",
-    titulos: "./data/titulos.json"
+// ! ------ CONFIGURACIÓN Y CONSTANTES ------ //
+const CONFIG = {
+    storageLang: "tvci_lang",
+    rutasDatos: {
+        demos: "./data/demos.json",
+        stack: "./data/stack.json",
+        trayectoria: "./data/trayectoria.json",
+        titulos: "./data/titulos.json"
+    },
+    tv: {
+        rutaFrames: "img/FramesTV",
+        maxFrames: 20,
+        intervaloMs: 3200,
+        cambioFrameMs: 150,
+        finSintoniaMs: 320,
+        anguloPasoDial: 55
+    },
+    banderasSvg: {
+        arg: `<svg class="lang-flag" viewBox="0 0 24 16" width="16" height="11" aria-hidden="true"><rect width="24" height="5.33" y="0" fill="#74ACDF"/><rect width="24" height="5.34" y="5.33" fill="#FFFFFF"/><rect width="24" height="5.33" y="10.67" fill="#74ACDF"/><circle cx="12" cy="8" r="2.1" fill="#F6B40E" stroke="#85340A" stroke-width="0.35"/></svg>`,
+        eng: `<svg class="lang-flag" viewBox="0 0 24 16" width="16" height="11" aria-hidden="true"><rect width="24" height="16" fill="#FFFFFF"/><rect x="10" width="4" height="16" fill="#CE1124"/><rect y="6" width="24" height="4" fill="#CE1124"/></svg>`
+    }
 };
 
-const RUTA_FRAMES_TV = "img/FramesTV";
-const MAX_FRAMES_TV = 20;
+// ? ------ Referencias del DOM ------ //
+const DOM = {
+    header: document.getElementById("top-header"),
+    btnLang: document.getElementById("btn-lang-toggle"),
+    gridDemos: document.getElementById("grid-demos"),
+    gridStack: document.getElementById("grid-stack"),
+    gridTrayectoria: document.getElementById("grid-trayectoria"),
+    gridTitulos: document.getElementById("grid-titulos"),
+    tvElemento: document.getElementById("retro-tv"),
+    tvImg: document.getElementById("tv-screen-img"),
+    canalLabel: document.getElementById("tv-channel-label"),
+    dialPrincipal: document.getElementById("tv-dial-main"),
+    pdfModal: document.getElementById("pdf-modal"),
+    pdfIframe: document.getElementById("pdf-iframe"),
+    pdfTitle: document.getElementById("pdf-modal-title"),
+    pdfMeta: document.getElementById("pdf-modal-meta"),
+    pdfExternalLink: document.getElementById("pdf-external-link"),
+    pdfCloseBtn: document.getElementById("pdf-modal-close"),
+    pdfBackdrop: document.getElementById("pdf-modal-backdrop")
+};
 
-const gridDemos = document.getElementById("grid-demos");
-const gridTrayectoria = document.getElementById("grid-trayectoria");
-const gridTitulos = document.getElementById("grid-titulos");
+// ? ------ Estado de la aplicación ------ //
+const ESTADO = {
+    idioma: localStorage.getItem(CONFIG.storageLang) === "en" ? "en" : "es",
+    demos: [],
+    stack: [],
+    trayectoria: { experiencia: [], formacion: [] },
+    titulos: []
+};
 
-let demosData = [];
-let trayectoriaData = { experiencia: [], formacion: [] };
-let titulosData = [];
-let idiomaActual = localStorage.getItem("tvci_lang") === "en" ? "en" : "es";
-
-// ------ DICCIONARIO DE INTERFAZ (ES / EN) ------ //
+// ! ------ DICCIONARIO DE INTERFAZ (ES / EN) ------ //
 const TRADUCCIONES = {
     es: {
         navProyectos: "Proyectos",
@@ -45,15 +79,6 @@ const TRADUCCIONES = {
         stackTitle1: "Stack",
         stackTitle2: "técnico.",
         stackSub: "Tecnologías, entornos y metodologías con las que construyo aplicaciones web, sistemas backend y videojuegos.",
-        stackCat1: "01 // DESARROLLO",
-        stackCard1: "Lenguajes & Frameworks",
-        stackCat2: "02 // DATOS & ENTORNO",
-        stackCard2: "Bases de Datos & Tools",
-        stackCat3: "03 // FLUJO DE TRABAJO",
-        stackCard3: "Metodologías & Perfil",
-        chipMvc: "Arquitectura MVC",
-        chipResp: "Diseño Responsivo",
-        chipEng: "Inglés Intermedio",
         trayEyebrow: "RECORRIDO PROFESIONAL Y ACADÉMICO",
         trayTitle1: "Experiencia &",
         trayTitle2: "formación.",
@@ -101,15 +126,6 @@ const TRADUCCIONES = {
         stackTitle1: "Tech",
         stackTitle2: "stack.",
         stackSub: "Technologies, environments, and methodologies I use to build web apps, backend systems, and games.",
-        stackCat1: "01 // DEVELOPMENT",
-        stackCard1: "Languages & Frameworks",
-        stackCat2: "02 // DATA & ENVIRONMENT",
-        stackCard2: "Databases & Tools",
-        stackCat3: "03 // WORKFLOW",
-        stackCard3: "Methodologies & Profile",
-        chipMvc: "MVC Architecture",
-        chipResp: "Responsive Design",
-        chipEng: "Intermediate English",
         trayEyebrow: "PROFESSIONAL & ACADEMIC PATH",
         trayTitle1: "Experience &",
         trayTitle2: "education.",
@@ -133,44 +149,49 @@ const TRADUCCIONES = {
     }
 };
 
+// ? ------ Utilidad de traducción ------ //
 function t(campo) {
     if (campo && typeof campo === "object") {
-        return campo[idiomaActual] || campo.es || "";
+        return campo[ESTADO.idioma] || campo.es || "";
     }
     return campo || "";
 }
 
-// ------ 1. CAMBIO DE IDIOMA ------ //
+// ! ------ 1. CAMBIO DE IDIOMA ------ //
 function aplicarIdioma(lang) {
-    idiomaActual = lang === "en" ? "en" : "es";
-    localStorage.setItem("tvci_lang", idiomaActual);
-    document.documentElement.lang = idiomaActual;
+    ESTADO.idioma = lang === "en" ? "en" : "es";
+    localStorage.setItem(CONFIG.storageLang, ESTADO.idioma);
+    document.documentElement.lang = ESTADO.idioma;
 
-    const dict = TRADUCCIONES[idiomaActual];
+    const dict = TRADUCCIONES[ESTADO.idioma];
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
         if (dict[key]) el.textContent = dict[key];
     });
 
-    const btnToggle = document.getElementById("btn-lang-toggle");
-    if (btnToggle) {
-        btnToggle.textContent = dict.toggleBtnLabel;
-        btnToggle.setAttribute("aria-label", idiomaActual === "es" ? "Switch language to English" : "Cambiar idioma a Español");
+    if (DOM.btnLang) {
+        const banderaSvg = ESTADO.idioma === "es" ? CONFIG.banderasSvg.eng : CONFIG.banderasSvg.arg;
+        DOM.btnLang.innerHTML = `${banderaSvg}<span>${dict.toggleBtnLabel}</span>`;
+        DOM.btnLang.setAttribute(
+            "aria-label",
+            ESTADO.idioma === "es" ? "Switch language to English" : "Cambiar idioma a Español"
+        );
     }
 
-    const openLink = document.getElementById("pdf-external-link");
-    if (openLink) openLink.textContent = dict.abrirPdf;
+    if (DOM.pdfExternalLink) {
+        DOM.pdfExternalLink.textContent = dict.abrirPdf;
+    }
 
     renderProyectos();
+    renderStack();
     renderTrayectoria();
     renderTitulos();
 }
 
-// ------ 2. SCROLL SUAVE ------ //
+// ! ------ 2. SCROLL SUAVE ------ //
 function inicializarScrollSuave() {
     const enlacesInternos = document.querySelectorAll('.nav-links a[href^="#"], .brand[href^="#"], .js-scroll-link[href^="#"]');
-    const header = document.getElementById("top-header");
 
     enlacesInternos.forEach(enlace => {
         enlace.addEventListener("click", e => {
@@ -181,7 +202,7 @@ function inicializarScrollSuave() {
             if (!seccionDestino) return;
 
             e.preventDefault();
-            const offsetHeader = header ? header.offsetHeight + 12 : 24;
+            const offsetHeader = DOM.header ? DOM.header.offsetHeight + 12 : 24;
             const posicionY = seccionDestino.getBoundingClientRect().top + window.scrollY - offsetHeader;
 
             window.scrollTo({
@@ -192,7 +213,7 @@ function inicializarScrollSuave() {
     });
 }
 
-// ------ 3. TELEVISIÓN RETRO: DETECCIÓN DINÁMICA DE FrameTv{n}.jpg ------ //
+// ! ------ 3. TELEVISIÓN RETRO ------ //
 function comprobarImagen(src) {
     return new Promise(resolve => {
         const img = new Image();
@@ -203,22 +224,21 @@ function comprobarImagen(src) {
 }
 
 async function descubrirFramesTv() {
+    const { rutaFrames, maxFrames } = CONFIG.tv;
     const encontrados = [];
-    for (let i = 1; i <= MAX_FRAMES_TV; i++) {
-        const ruta = `${RUTA_FRAMES_TV}/FrameTv${i}.jpg`;
+
+    for (let i = 1; i <= maxFrames; i++) {
+        const ruta = `${rutaFrames}/FrameTv${i}.jpg`;
         const valida = await comprobarImagen(ruta);
         if (!valida) break;
         encontrados.push(valida);
     }
-    return encontrados.length ? encontrados : [`${RUTA_FRAMES_TV}/FrameTv1.jpg`];
+
+    return encontrados.length ? encontrados : [`${rutaFrames}/FrameTv1.jpg`];
 }
 
 async function inicializarTelevisionRetro() {
-    const tvElemento = document.getElementById("retro-tv");
-    const tvImg = document.getElementById("tv-screen-img");
-    const canalLabel = document.getElementById("tv-channel-label");
-    const dialPrincipal = document.getElementById("tv-dial-main");
-
+    const { tvElemento, tvImg, canalLabel, dialPrincipal } = DOM;
     if (!tvElemento || !tvImg) return;
 
     const framesTv = await descubrirFramesTv();
@@ -227,7 +247,7 @@ async function inicializarTelevisionRetro() {
     function actualizarEtiquetaCanal() {
         if (!canalLabel) return;
         const numeroFormateado = String(indiceActual + 1).padStart(2, "0");
-        canalLabel.textContent = `CH ${numeroFormateado} / ${TRADUCCIONES[idiomaActual].tvChannelSuffix}`;
+        canalLabel.textContent = `CH ${numeroFormateado} / ${TRADUCCIONES[ESTADO.idioma].tvChannelSuffix}`;
     }
 
     tvImg.src = framesTv[0];
@@ -238,36 +258,41 @@ async function inicializarTelevisionRetro() {
     function cambiarCanal(siguienteIndice) {
         indiceActual = siguienteIndice % framesTv.length;
         tvImg.classList.add("is-switching");
+        tvElemento.classList.add("is-tuning");
 
         setTimeout(() => {
             tvImg.src = framesTv[indiceActual];
             actualizarEtiquetaCanal();
             if (dialPrincipal) {
-                dialPrincipal.style.transform = `rotate(${indiceActual * 55}deg)`;
+                dialPrincipal.style.transform = `rotate(${indiceActual * CONFIG.tv.anguloPasoDial}deg)`;
             }
+        }, CONFIG.tv.cambioFrameMs);
+
+        setTimeout(() => {
             tvImg.classList.remove("is-switching");
-        }, 160);
+            tvElemento.classList.remove("is-tuning");
+        }, CONFIG.tv.finSintoniaMs);
     }
 
     let intervaloTv = setInterval(() => {
         if (!document.hidden) cambiarCanal(indiceActual + 1);
-    }, 3200);
+    }, CONFIG.tv.intervaloMs);
 
     tvElemento.addEventListener("click", () => {
         clearInterval(intervaloTv);
         cambiarCanal(indiceActual + 1);
         intervaloTv = setInterval(() => {
             if (!document.hidden) cambiarCanal(indiceActual + 1);
-        }, 3200);
+        }, CONFIG.tv.intervaloMs);
     });
 }
 
-// ------ 4. PROYECTOS DESDE data/demos.json ------ //
+// ! ------ 4. PROYECTOS DESDE data/demos.json ------ //
 function renderProyectos() {
-    if (!gridDemos || !Array.isArray(demosData)) return;
-    const dict = TRADUCCIONES[idiomaActual];
+    if (!DOM.gridDemos || !Array.isArray(ESTADO.demos)) return;
+    const dict = TRADUCCIONES[ESTADO.idioma];
 
-    gridDemos.innerHTML = demosData.map(demo => {
+    DOM.gridDemos.innerHTML = ESTADO.demos.map(demo => {
         const bloqueImagen = demo.imagen
             ? `<div class="project-thumb">
                    <img src="${demo.imagen}" alt="${t(demo.titulo)}" loading="lazy" onerror="this.parentElement.style.display='none'">
@@ -302,21 +327,54 @@ function renderProyectos() {
 }
 
 async function cargarProyectos() {
-    if (!gridDemos) return;
+    if (!DOM.gridDemos) return;
     try {
-        const res = await fetch(RUTAS_DATOS.demos);
+        const res = await fetch(CONFIG.rutasDatos.demos);
         if (!res.ok) throw new Error("Error cargando demos.json");
-        demosData = await res.json();
+        ESTADO.demos = await res.json();
         renderProyectos();
     } catch (err) {
         console.error(err);
-        gridDemos.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 2rem;">No se pudieron cargar los proyectos.</p>`;
+        DOM.gridDemos.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 2rem;">No se pudieron cargar los proyectos.</p>`;
     }
 }
 
-// ------ 5. TRAYECTORIA DESDE data/trayectoria.json ------ //
+// ! ------ 5. STACK TÉCNICO DESDE data/stack.json ------ //
+function renderStack() {
+    if (!DOM.gridStack || !Array.isArray(ESTADO.stack)) return;
+
+    DOM.gridStack.innerHTML = ESTADO.stack.map(grupo => {
+        const chipsHtml = Array.isArray(grupo.items)
+            ? grupo.items.map(item => `<span class="tech-chip">${t(item)}</span>`).join("")
+            : "";
+
+        return `
+        <article class="stack-card">
+            <span class="stack-category">${t(grupo.categoria)}</span>
+            <h3>${t(grupo.titulo)}</h3>
+            <div class="chip-list">
+                ${chipsHtml}
+            </div>
+        </article>`;
+    }).join("");
+}
+
+async function cargarStack() {
+    if (!DOM.gridStack) return;
+    try {
+        const res = await fetch(CONFIG.rutasDatos.stack);
+        if (!res.ok) throw new Error("Error cargando stack.json");
+        ESTADO.stack = await res.json();
+        renderStack();
+    } catch (err) {
+        console.error(err);
+        DOM.gridStack.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 2rem;">No se pudo cargar el stack técnico.</p>`;
+    }
+}
+
+// ! ------ 6. TRAYECTORIA DESDE data/trayectoria.json ------ //
 function renderColumnaTrayectoria(tituloColumna, items) {
-    const dict = TRADUCCIONES[idiomaActual];
+    const dict = TRADUCCIONES[ESTADO.idioma];
     const ordenados = [...items].sort((a, b) => Number(Boolean(b.enCurso)) - Number(Boolean(a.enCurso)));
 
     const cardsHtml = ordenados.map(item => {
@@ -345,82 +403,75 @@ function renderColumnaTrayectoria(tituloColumna, items) {
 }
 
 function renderTrayectoria() {
-    if (!gridTrayectoria) return;
-    const dict = TRADUCCIONES[idiomaActual];
-    const expHtml = renderColumnaTrayectoria(dict.colExperiencia, trayectoriaData.experiencia || []);
-    const formHtml = renderColumnaTrayectoria(dict.colFormacion, trayectoriaData.formacion || []);
-    gridTrayectoria.innerHTML = expHtml + formHtml;
+    if (!DOM.gridTrayectoria) return;
+    const dict = TRADUCCIONES[ESTADO.idioma];
+    const expHtml = renderColumnaTrayectoria(dict.colExperiencia, ESTADO.trayectoria.experiencia || []);
+    const formHtml = renderColumnaTrayectoria(dict.colFormacion, ESTADO.trayectoria.formacion || []);
+    DOM.gridTrayectoria.innerHTML = expHtml + formHtml;
 }
 
 async function cargarTrayectoria() {
-    if (!gridTrayectoria) return;
+    if (!DOM.gridTrayectoria) return;
     try {
-        const res = await fetch(RUTAS_DATOS.trayectoria);
+        const res = await fetch(CONFIG.rutasDatos.trayectoria);
         if (!res.ok) throw new Error("Error cargando trayectoria.json");
-        trayectoriaData = await res.json();
+        ESTADO.trayectoria = await res.json();
         renderTrayectoria();
     } catch (err) {
         console.error(err);
-        gridTrayectoria.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 2rem;">No se pudo cargar la trayectoria.</p>`;
+        DOM.gridTrayectoria.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 2rem;">No se pudo cargar la trayectoria.</p>`;
     }
 }
 
-// ------ 6. TÍTULOS + MODAL DE PDF DESDE data/titulos.json ------ //
+// ! ------ 7. TÍTULOS + MODAL DE PDF DESDE data/titulos.json ------ //
 function abrirModalPdf(index) {
-    const tituloItem = titulosData[index];
-    const modal = document.getElementById("pdf-modal");
-    const iframe = document.getElementById("pdf-iframe");
-    const modalTitle = document.getElementById("pdf-modal-title");
-    const modalMeta = document.getElementById("pdf-modal-meta");
-    const externalLink = document.getElementById("pdf-external-link");
+    const tituloItem = ESTADO.titulos[index];
+    const { pdfModal, pdfIframe, pdfTitle, pdfMeta, pdfExternalLink } = DOM;
 
-    if (!tituloItem || !modal || !iframe) return;
+    if (!tituloItem || !pdfModal || !pdfIframe) return;
 
     const pdfRuta = t(tituloItem.pdf);
-    modalMeta.textContent = `${t(tituloItem.institucion) || "ACREDITACIÓN"} · ${tituloItem.anio || ""}`;
-    modalTitle.textContent = t(tituloItem.titulo);
-    iframe.src = pdfRuta;
-    if (externalLink) {
-        externalLink.href = pdfRuta;
-        externalLink.textContent = TRADUCCIONES[idiomaActual].abrirPdf;
+    if (pdfMeta) pdfMeta.textContent = `${t(tituloItem.institucion) || "ACREDITACIÓN"} · ${tituloItem.anio || ""}`;
+    if (pdfTitle) pdfTitle.textContent = t(tituloItem.titulo);
+    pdfIframe.src = pdfRuta;
+
+    if (pdfExternalLink) {
+        pdfExternalLink.href = pdfRuta;
+        pdfExternalLink.textContent = TRADUCCIONES[ESTADO.idioma].abrirPdf;
     }
 
-    modal.hidden = false;
+    pdfModal.hidden = false;
     document.body.style.overflow = "hidden";
 }
 
 function cerrarModalPdf() {
-    const modal = document.getElementById("pdf-modal");
-    const iframe = document.getElementById("pdf-iframe");
-    if (!modal) return;
+    const { pdfModal, pdfIframe } = DOM;
+    if (!pdfModal) return;
 
-    modal.hidden = true;
-    if (iframe) iframe.src = "";
+    pdfModal.hidden = true;
+    if (pdfIframe) pdfIframe.src = "";
     document.body.style.overflow = "";
 }
 
 function inicializarModalPdf() {
-    const modal = document.getElementById("pdf-modal");
-    const closeBtn = document.getElementById("pdf-modal-close");
-    const backdrop = document.getElementById("pdf-modal-backdrop");
+    const { pdfModal, pdfCloseBtn, pdfBackdrop } = DOM;
+    if (!pdfModal) return;
 
-    if (!modal) return;
-
-    closeBtn?.addEventListener("click", cerrarModalPdf);
-    backdrop?.addEventListener("click", cerrarModalPdf);
+    pdfCloseBtn?.addEventListener("click", cerrarModalPdf);
+    pdfBackdrop?.addEventListener("click", cerrarModalPdf);
 
     document.addEventListener("keydown", e => {
-        if (e.key === "Escape" && !modal.hidden) {
+        if (e.key === "Escape" && !pdfModal.hidden) {
             cerrarModalPdf();
         }
     });
 }
 
 function renderTitulos() {
-    if (!gridTitulos || !Array.isArray(titulosData)) return;
-    const dict = TRADUCCIONES[idiomaActual];
+    if (!DOM.gridTitulos || !Array.isArray(ESTADO.titulos)) return;
+    const dict = TRADUCCIONES[ESTADO.idioma];
 
-    gridTitulos.innerHTML = titulosData.map((item, idx) => {
+    DOM.gridTitulos.innerHTML = ESTADO.titulos.map((item, idx) => {
         const titulo = t(item.titulo);
         return `
             <button type="button" class="diploma-card" data-pdf-index="${idx}" aria-label="${dict.verPdf}: ${titulo}">
@@ -440,7 +491,7 @@ function renderTitulos() {
             </button>`;
     }).join("");
 
-    gridTitulos.querySelectorAll(".diploma-card").forEach(btn => {
+    DOM.gridTitulos.querySelectorAll(".diploma-card").forEach(btn => {
         btn.addEventListener("click", () => {
             abrirModalPdf(Number(btn.getAttribute("data-pdf-index")));
         });
@@ -448,19 +499,19 @@ function renderTitulos() {
 }
 
 async function cargarTitulos() {
-    if (!gridTitulos) return;
+    if (!DOM.gridTitulos) return;
     try {
-        const res = await fetch(RUTAS_DATOS.titulos);
+        const res = await fetch(CONFIG.rutasDatos.titulos);
         if (!res.ok) throw new Error("Error cargando titulos.json");
-        titulosData = await res.json();
+        ESTADO.titulos = await res.json();
         renderTitulos();
     } catch (err) {
         console.error(err);
-        gridTitulos.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 2rem;">No se pudieron cargar los títulos.</p>`;
+        DOM.gridTitulos.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1; text-align: center; padding: 2rem;">No se pudieron cargar los títulos.</p>`;
     }
 }
 
-// ------ 7. EFECTO DE LUZ EN TARJETAS (DESKTOP) ------ //
+// ! ------ 8. EFECTO DE LUZ EN TARJETAS (DESKTOP) ------ //
 function inicializarEfectoTarjetas() {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
@@ -473,19 +524,19 @@ function inicializarEfectoTarjetas() {
     });
 }
 
-// ------ INICIALIZACIÓN ------ //
+// ! ------ INICIALIZACIÓN ------ //
 document.addEventListener("DOMContentLoaded", () => {
     inicializarScrollSuave();
     inicializarTelevisionRetro();
     inicializarModalPdf();
 
-    const btnLang = document.getElementById("btn-lang-toggle");
-    btnLang?.addEventListener("click", () => {
-        aplicarIdioma(idiomaActual === "es" ? "en" : "es");
+    DOM.btnLang?.addEventListener("click", () => {
+        aplicarIdioma(ESTADO.idioma === "es" ? "en" : "es");
     });
 
-    aplicarIdioma(idiomaActual);
+    aplicarIdioma(ESTADO.idioma);
     cargarProyectos();
+    cargarStack();
     cargarTrayectoria();
     cargarTitulos();
 });

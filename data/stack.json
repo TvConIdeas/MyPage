@@ -1,0 +1,66 @@
+[
+    {
+        "categoria": {
+        "es": "01 // DESARROLLO",
+        "en": "01 // DEVELOPMENT"
+        },
+        "titulo": {
+        "es": "Lenguajes & Frameworks",
+        "en": "Languages & Frameworks"
+        },
+        "items": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Angular",
+        "Java",
+        "Spring Boot",
+        "Python",
+        "C",
+        "PHP"
+        ]
+    },
+    {
+        "categoria": {
+        "es": "02 // DATOS & ENTORNO",
+        "en": "02 // DATA & ENVIRONMENT"
+        },
+        "titulo": {
+        "es": "Bases de Datos & Tools",
+        "en": "Databases & Tools"
+        },
+        "items": [
+        "MySQL",
+        "Git & GitHub",
+        "APIs REST / JSON",
+        "Swagger",
+        "Thymeleaf",
+        "VS Code",
+        "IntelliJ IDEA"
+        ]
+    },
+    {
+        "categoria": {
+        "es": "03 // FLUJO DE TRABAJO",
+        "en": "03 // WORKFLOW"
+        },
+        "titulo": {
+        "es": "Metodologías & Perfil",
+        "en": "Methodologies & Profile"
+        },
+        "items": [
+        {
+            "es": "Arquitectura MVC",
+            "en": "MVC Architecture"
+        },
+        {
+            "es": "Diseño Responsivo",
+            "en": "Responsive Design"
+        },
+        {
+            "es": "Inglés Intermedio",
+            "en": "Intermediate English"
+        }
+        ]
+    }
+]

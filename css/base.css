@@ -87,15 +87,15 @@ button {
     overflow: hidden;
     pointer-events: none;
     background:
-        radial-gradient(ellipse at 82% 18%, rgba(47, 107, 59, 0.22), transparent 48%),
-        radial-gradient(ellipse at 16% 76%, rgba(67, 72, 82, 0.22), transparent 50%),
-        linear-gradient(160deg, #0b140e 0%, #08080a 55%, #050507 100%);
+        radial-gradient(ellipse at 82% 18%, rgba(47, 107, 59, 0.1), transparent 50%),
+        radial-gradient(ellipse at 16% 76%, rgba(67, 72, 82, 0.1), transparent 52%),
+        linear-gradient(160deg, rgba(11, 20, 14, 0.45) 0%, rgba(8, 8, 10, 0.72) 55%, rgba(5, 5, 7, 0.85) 100%);
 }
 
 .stars-layer {
     position: absolute;
     inset: 0;
-    opacity: 0.78;
+    opacity: 0.35;
     background-image:
         radial-gradient(1.5px 1.5px at 12% 22%, var(--mg-cream) 98%, transparent),
         radial-gradient(2px 2px at 28% 48%, #4e8f5a 98%, transparent),
@@ -105,12 +105,6 @@ button {
         radial-gradient(2px 2px at 91% 68%, #4e8f5a 98%, transparent),
         radial-gradient(1.5px 1.5px at 55% 82%, var(--mg-cream) 98%, transparent);
     background-size: 450px 450px;
-    animation: star-drift 45s linear infinite alternate;
-}
-
-@keyframes star-drift {
-    from { transform: translate3d(0, 0, 0); }
-    to { transform: translate3d(0, -22px, 0); }
 }
 
 .moon {
@@ -121,8 +115,8 @@ button {
     aspect-ratio: 1;
     border-radius: 50%;
     background: radial-gradient(circle at 35% 35%, var(--mg-cream), #dcd8ce 65%, var(--mg-slate));
-    box-shadow: 0 0 42px rgba(250, 249, 242, 0.18), 0 0 95px rgba(47, 107, 59, 0.24);
-    opacity: 0.88;
+    box-shadow: 0 0 36px rgba(250, 249, 242, 0.12), 0 0 80px rgba(47, 107, 59, 0.16);
+    opacity: 0.42;
 }
 
 .sunset-glow {
@@ -131,7 +125,7 @@ button {
     height: 32vw;
     right: -12vw;
     bottom: 5%;
-    background: radial-gradient(ellipse, rgba(29, 70, 38, 0.22) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(29, 70, 38, 0.12) 0%, transparent 70%);
 }
 
 .landscape-hills {
@@ -144,17 +138,17 @@ button {
 .hills-back {
     height: 25vh;
     background:
-        linear-gradient(165deg, transparent 0 25%, rgba(67, 72, 82, 0.35) 25.2% 44%, transparent 44.2%),
-        linear-gradient(18deg, #0d1510, #162b1c 55%, transparent 55.2%);
+        linear-gradient(165deg, transparent 0 25%, rgba(67, 72, 82, 0.2) 25.2% 44%, transparent 44.2%),
+        linear-gradient(18deg, rgba(13, 21, 16, 0.65), rgba(22, 43, 28, 0.65) 55%, transparent 55.2%);
     clip-path: polygon(0 55%, 14% 28%, 28% 51%, 45% 19%, 60% 52%, 77% 25%, 100% 58%, 100% 100%, 0 100%);
-    opacity: 0.8;
+    opacity: 0.45;
 }
 
 .hills-front {
     height: 13vh;
-    background: linear-gradient(180deg, #0e1711, #050507);
+    background: linear-gradient(180deg, rgba(14, 23, 17, 0.7), rgba(5, 5, 7, 0.85));
     clip-path: polygon(0 42%, 18% 22%, 37% 52%, 58% 25%, 78% 48%, 100% 18%, 100% 100%, 0 100%);
-    opacity: 0.96;
+    opacity: 0.55;
 }
 
 .cabin-glow {
@@ -163,7 +157,7 @@ button {
     left: 8%;
     width: 14rem;
     height: 14rem;
-    background: radial-gradient(circle, rgba(47, 107, 59, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(47, 107, 59, 0.1) 0%, transparent 70%);
     border-radius: 50%;
 }
 
