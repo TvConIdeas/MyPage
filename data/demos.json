@@ -1,0 +1,23 @@
+[
+    {
+        "estrella": "★ SECTOR 01",
+        "titulo": "Catálogo Digital & WhatsApp",
+        "etiqueta": "E-Commerce",
+        "descripcion": "Sistema de pedidos directos optimizado para negocios locales sin comisiones intermedias.",
+        "linkDemo": "#"
+    },
+    {
+        "estrella": "★ SECTOR 02",
+        "titulo": "Web Vault Channels",
+        "etiqueta": "Retro UI",
+        "descripcion": "Biblioteca interactiva de ports y clásicos web con diseño responsivo y bilingüe.",
+        "linkDemo": "https://tvconideas.github.io/Web-Vault-Channels/"
+    },
+    {
+        "estrella": "★ SECTOR 03",
+        "titulo": "Landing Profesional",
+        "etiqueta": "Corporativo",
+        "descripcion": "Diseños minimalistas y limpios orientados a la conversión directa de clientes.",
+        "linkDemo": "#"
+    }
+]

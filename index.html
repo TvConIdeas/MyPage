@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08080a">
+    <meta name="description" content="Portfolio de Ian Francano — TvConIdeas. Desarrollo web y proyectos digitales.">
+    <title>TvConIdeas | Ian Francano - Desarrollo Web</title>
+    <link rel="icon" href="img/IconImg.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ------ FONDO ATMOSFÉRICO MIDNIGHT GLOW ------ -->
+    <div class="sky-background" aria-hidden="true">
+        <div class="grain-layer"></div>
+        <div class="stars-layer"></div>
+        <div class="moon"></div>
+        <div class="sunset-glow"></div>
+        <div class="landscape-hills hills-back"></div>
+        <div class="landscape-hills hills-front"></div>
+        <div class="cabin-glow"></div>
+    </div>
+
+    <!-- ------ ENCABEZADO / NAVEGACIÓN ------ -->
+    <header class="header container">
+        <nav class="nav-content" aria-label="Navegación principal">
+            <a class="brand" href="#inicio" aria-label="TvConIdeas, inicio">
+                <span class="logo-text">TvConIdeas</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#proyectos">Proyectos</a>
+                <a href="#redes">Conectemos</a>
+            </div>
+
+            <div class="nav-acciones">
+                <a href="https://wa.me/542236929949" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+                    <span>Hablemos</span><span aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ------ CONTENIDO PRINCIPAL ------ -->
+    <main class="main-universe container" id="inicio">
+
+        <!-- ------ PRESENTACIÓN PRINCIPAL ------ -->
+        <section class="constellation-hero">
+            <div class="hero-copy">
+                <span class="badge-system"><span class="status-dot"></span> PORTFOLIO CREATIVO // MDP - ARG</span>
+                <p class="eyebrow">DESARROLLO WEB · IDEAS EN MOVIMIENTO</p>
+                <h1>Ideas que toman<br><span>forma propia.</span></h1>
+                <p class="hero-description">Soy Ian Francano, Técnico en Programación (UTN) y estudiante de Ingeniería Informática (UNMDP). Diseño y desarrollo experiencias web pensadas para destacar, funcionar bien y dejar una impresión.</p>
+                <div class="hero-actions">
+                    <a class="btn-primary" href="#proyectos">Explorar proyectos <span aria-hidden="true">↓</span></a>
+                    <a class="btn-secondary" href="https://github.com/TvConIdeas" target="_blank" rel="noopener noreferrer">Ver GitHub ↗</a>
+                </div>
+                <div class="hero-signature"><span class="signature-line"></span> CURIOSIDAD, CÓDIGO Y CREATIVIDAD.</div>
+            </div>
+
+            <div class="hero-art" aria-label="Retrato de Ian Francano en televisor retro">
+                <div class="art-orbit orbit-one"></div>
+                <div class="art-orbit orbit-two"></div>
+                <div class="art-spark spark-one">✦</div>
+                <div class="art-spark spark-two">✧</div>
+
+                <!-- TELEVISIÓN TRADICIONAL RETRO -->
+                <div class="retro-tv">
+                    <div class="tv-antennas" aria-hidden="true">
+                        <span class="antenna left"></span>
+                        <span class="antenna right"></span>
+                        <span class="antenna-base"></span>
+                    </div>
+                    <div class="tv-cabinet">
+                        <div class="tv-bezel">
+                            <div class="tv-screen">
+                                <img src="img/ProfileImg.JPG" alt="Retrato de Ian Francano">
+                                <div class="tv-scanlines" aria-hidden="true"></div>
+                                <div class="tv-glare" aria-hidden="true"></div>
+                            </div>
+                        </div>
+                        <div class="tv-controls" aria-hidden="true">
+                            <div class="tv-dial"></div>
+                            <div class="tv-dial"></div>
+                            <div class="tv-speaker">
+                                <span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="tv-power-led"></div>
+                        </div>
+                    </div>
+                    <div class="tv-legs" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="art-caption"><span>CH 01 / CREADOR</span><span>IAN FRANCANO</span></div>
+            </div>
+            <div class="hero-index" aria-hidden="true">TVCI — 001</div>
+        </section>
+
+        <!-- DIVISOR ENTRE SECCIONES -->
+        <div class="section-divider" aria-hidden="true">
+            <span>✦</span>
+        </div>
+
+        <!-- ------ PROYECTOS / DEMOS ------ -->
+        <section class="star-system-section" id="proyectos">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">TRABAJO SELECCIONADO</p>
+                    <h2 class="section-title">Proyectos en <span>escena.</span></h2>
+                </div>
+                <span class="section-number">01 — 03</span>
+            </div>
+            <p class="section-subtitle">Cada proyecto es una idea distinta. Elegí uno para conocerlo en funcionamiento.</p>
+
+            <!-- Inyectado dinámicamente desde data/demos.json -->
+            <div id="grid-demos" class="star-grid" aria-live="polite"></div>
+        </section>
+
+        <!-- DIVISOR ENTRE SECCIONES -->
+        <div class="section-divider" aria-hidden="true">
+            <span>✦</span>
+        </div>
+
+        <!-- ------ REDES / CONTACTO ------ -->
+        <section class="star-system-section social-section" id="redes">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">FUERA DE ESCENA</p>
+                    <h2 class="section-title">Sigamos en <span>contacto.</span></h2>
+                </div>
+                <span class="section-number">02 — 03</span>
+            </div>
+            <div class="social-star-cluster">
+                <a href="https://linkedin.com/in/ianfrancano" target="_blank" rel="noopener noreferrer" class="star-node-link social-linkedin">
+                    <span class="social-icon">in</span><span class="star-label">LinkedIn <small>Profesional</small></span><span class="social-arrow">↗</span>
+                </a>
+                <a href="https://github.com/TvConIdeas" target="_blank" rel="noopener noreferrer" class="star-node-link social-github">
+                    <span class="social-icon">⌘</span><span class="star-label">GitHub <small>Repositorios</small></span><span class="social-arrow">↗</span>
+                </a>
+                <a href="https://instagram.com/francanoiannn" target="_blank" rel="noopener noreferrer" class="star-node-link social-instagram">
+                    <span class="social-icon">◎</span><span class="star-label">Instagram <small>Personal</small></span><span class="social-arrow">↗</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="closing-note"><span>✦</span> GRACIAS POR PASAR A VER MI TRABAJO <span>✦</span></div>
+    </main>
+
+    <!-- ------ FOOTER ------ -->
+    <footer class="footer container">
+        <p>TvConIdeas <span>—</span> Ian Francano</p>
+        <p>Hecho con intención en Mar del Plata, Buenos Aires <span>✦</span></p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
