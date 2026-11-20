@@ -1,0 +1,85 @@
+[
+    {
+        "codigo": {
+            "es": "CERT. 01",
+            "en": "CERT. 01"
+        },
+        "anio": "2024",
+        "titulo": {
+            "es": "Programador Web Junior",
+            "en": "Junior Web Programmer"
+        },
+        "institucion": {
+            "es": "Instituto HILET",
+            "en": "HILET Institute"
+        },
+        "descripcion": {
+            "es": "Certificado de aprobación de 77 horas de duración (Mar del Plata, marzo de 2024).",
+            "en": "Completion certificate of 77 hours (Mar del Plata, March 2024)."
+        },
+        "pdf": "docs/certificado-programador-web-junior-hilet.pdf"
+    },
+    {
+        "codigo": {
+            "es": "EXCELENCIA · 2.º PUESTO",
+            "en": "EXCELLENCE · 2ND PLACE"
+        },
+        "anio": "2023",
+        "titulo": {
+            "es": "Certificado de Excelencia — Curso de Python",
+            "en": "Certificate of Excellence — Python Course"
+        },
+        "institucion": {
+            "es": "Kodland",
+            "en": "Kodland"
+        },
+        "descripcion": {
+            "es": "Graduado con 2.º puesto del grupo (32 clases / 48 hs, 03/09/2022 – 29/04/2023).",
+            "en": "Graduated with 2nd place in the group (32 lessons / 48 hrs, 09/03/2022 – 04/29/2023)."
+        },
+        "pdf": {
+            "es": "docs/certificado-excelencia-python-kodland.pdf",
+            "en": "docs/certificate-excellence-python-kodland-en.pdf"
+        }
+    },
+    {
+        "codigo": {
+            "es": "IDIOMA",
+            "en": "LANGUAGE"
+        },
+        "anio": "2025",
+        "titulo": {
+            "es": "English Discoveries — Nivel Intermediate 1",
+            "en": "English Discoveries — Intermediate 1 Level"
+        },
+        "institucion": {
+            "es": "Edusoft (Subsidiaria de ETS)",
+            "en": "Edusoft (ETS Subsidiary)"
+        },
+        "descripcion": {
+            "es": "Certificate of Placement nivel Intermediate 1 (Buenos Aires, 2025).",
+            "en": "Placement Certificate achieving Intermediate 1 level (Buenos Aires, 2025)."
+        },
+        "pdf": "docs/certificado-ingles-intermediate-1-edusoft.pdf"
+    },
+    {
+        "codigo": {
+            "es": "TÍTULO EN TRÁMITE",
+            "en": "DEGREE IN PROCESS"
+        },
+        "anio": "2024–2025",
+        "titulo": {
+            "es": "Tecnicatura Universitaria en Programación (Actividad Académica)",
+            "en": "University Technician in Programming (Academic Record)"
+        },
+        "institucion": {
+            "es": "UTN — Facultad Regional Mar del Plata",
+            "en": "UTN — Mar del Plata Regional Faculty"
+        },
+        "descripcion": {
+            "es": "Cursada y finales aprobados completos; título en trámite. Constancia de actividad académica.",
+            "en": "All coursework and exams completed; degree in process. Official academic activity sheet."
+        },
+        "pdf": "docs/actividad-academica-tup-utn.pdf"
+    }
+]

@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- * ------ Metadatos base y SEO ------ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#08080a">
-    <meta name="description" content="Portfolio de Ian Francano — TvConIdeas. Desarrollo web y proyectos digitales.">
+    <meta name="description" content="Portfolio de Ian Francano — TvConIdeas. Desarrollo web, aplicaciones y proyectos digitales desde Mar del Plata.">
     <title>TvConIdeas | Ian Francano - Desarrollo Web</title>
+
+    <!-- * ------ Open Graph (WhatsApp, LinkedIn y redes) ------ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TvConIdeas">
+    <meta property="og:title" content="TvConIdeas | Ian Francano — Desarrollo Web">
+    <meta property="og:description" content="Portfolio creativo de Ian Francano. Desarrollo web, aplicaciones de gestión y proyectos interactivos.">
+    <meta property="og:url" content="https://tvconideas.github.io/MyPage/">
+    <meta property="og:image" content="https://tvconideas.github.io/MyPage/img/og-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_AR">
+
+    <!-- * ------ Twitter / X Card ------ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TvConIdeas | Ian Francano — Desarrollo Web">
+    <meta name="twitter:description" content="Portfolio creativo de Ian Francano. Desarrollo web, aplicaciones y proyectos interactivos.">
+    <meta name="twitter:image" content="https://tvconideas.github.io/MyPage/img/og-preview.jpg">
+
+    <!-- ? ------ Ícono, fuentes y hojas de estilo ------ -->
     <link rel="icon" href="img/IconImg.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/tvFigure.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
 
-    <!-- ------ FONDO ATMOSFÉRICO MIDNIGHT GLOW ------ -->
+    <!-- ! ------ FONDO ATMOSFÉRICO ------ -->
     <div class="sky-background" aria-hidden="true">
-        <div class="grain-layer"></div>
         <div class="stars-layer"></div>
         <div class="moon"></div>
         <div class="sunset-glow"></div>
@@ -25,140 +48,269 @@
         <div class="cabin-glow"></div>
     </div>
 
-    <!-- ------ ENCABEZADO / NAVEGACIÓN ------ -->
-    <header class="header container">
+    <!-- ! ------ ENCABEZADO Y NAVEGACIÓN ------ -->
+    <header class="header container" id="top-header">
         <nav class="nav-content" aria-label="Navegación principal">
+            <!-- ? ------ Marca textual ------ -->
             <a class="brand" href="#inicio" aria-label="TvConIdeas, inicio">
                 <span class="logo-text">TvConIdeas</span>
             </a>
 
+            <!-- ? ------ Enlaces de secciones ------ -->
             <div class="nav-links">
-                <a href="#proyectos">Proyectos</a>
-                <a href="#redes">Conectemos</a>
+                <a href="#proyectos" data-i18n="navProyectos">Proyectos</a>
+                <a href="#stack" data-i18n="navStack">Stack</a>
+                <a href="#trayectoria" data-i18n="navTrayectoria">Trayectoria</a>
+                <a href="#titulos" data-i18n="navTitulos">Títulos</a>
+                <a href="#redes" data-i18n="navRedes">Conectemos</a>
             </div>
 
+            <!-- ? ------ Acciones: idioma y WhatsApp ------ -->
             <div class="nav-acciones">
-                <a href="https://wa.me/542236929949" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
-                    <span>Hablemos</span><span aria-hidden="true">↗</span>
+                <button type="button" class="btn-lang" id="btn-lang-toggle" aria-label="Cambiar idioma">
+                    EN
+                </button>
+                <!-- * ------ Botón de contacto directo por WhatsApp ------ -->
+                <a href="https://wa.me/542236929949" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Hablemos por WhatsApp">
+                    <svg class="wa-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor">
+                        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.75 14.07c-.24.68-1.4 1.3-1.92 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.18-4.94-4.37-.15-.19-1.18-1.57-1.18-3 0-1.43.75-2.13 1.01-2.42.27-.29.59-.36.79-.36.2 0 .4 0 .57.01.18.01.43-.07.67.51.24.58.83 2.02.9 2.17.07.15.12.32.02.51-.1.19-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.07 1.31 2.36 1.46.29.15.46.12.63-.07.17-.2.73-.85.92-1.14.2-.29.39-.24.66-.14.27.1 1.7.8 1.99.95.29.15.49.22.56.34.07.12.07.7-.17 1.38z"/>
+                    </svg>
+                    <span data-i18n="ctaWhatsapp">Hablemos</span>
+                    <span class="wa-arrow" aria-hidden="true">↗</span>
                 </a>
             </div>
         </nav>
     </header>
 
-    <!-- ------ CONTENIDO PRINCIPAL ------ -->
+    <!-- ! ------ CONTENIDO PRINCIPAL ------ -->
     <main class="main-universe container" id="inicio">
 
-        <!-- ------ PRESENTACIÓN PRINCIPAL ------ -->
+        <!-- ? ------ Sección Hero y TV retro ------ -->
         <section class="constellation-hero">
             <div class="hero-copy">
-                <span class="badge-system"><span class="status-dot"></span> PORTFOLIO CREATIVO // MDP - ARG</span>
-                <p class="eyebrow">DESARROLLO WEB · IDEAS EN MOVIMIENTO</p>
-                <h1>Ideas que toman<br><span>forma propia.</span></h1>
-                <p class="hero-description">Soy Ian Francano, Técnico en Programación (UTN) y estudiante de Ingeniería Informática (UNMDP). Diseño y desarrollo experiencias web pensadas para destacar, funcionar bien y dejar una impresión.</p>
+                <span class="badge-system"><span class="status-dot"></span> <span data-i18n="heroBadge">PORTFOLIO CREATIVO // MDP - ARG</span></span>
+                <p class="eyebrow" data-i18n="heroEyebrow">DESARROLLO WEB · IDEAS EN MOVIMIENTO</p>
+                <h1><span data-i18n="heroTitle1">Ideas que toman</span><br><span class="title-accent" data-i18n="heroTitle2">forma propia.</span></h1>
+                <p class="hero-description" data-i18n="heroDesc">Soy Ian Francano, Técnico Universitario en Programación (UTN) y estudiante de Ingeniería Informática (UNMDP). Diseño y desarrollo páginas web, sistemas de gestión y experiencias interactivas pensadas para funcionar bien y destacar.</p>
                 <div class="hero-actions">
-                    <a class="btn-primary" href="#proyectos">Explorar proyectos <span aria-hidden="true">↓</span></a>
-                    <a class="btn-secondary" href="https://github.com/TvConIdeas" target="_blank" rel="noopener noreferrer">Ver GitHub ↗</a>
+                    <a class="btn-primary js-scroll-link" href="#proyectos"><span data-i18n="btnExplorar">Explorar proyectos</span> <span class="btn-arrow" aria-hidden="true">↓</span></a>
+                    <a class="btn-secondary" href="https://github.com/TvConIdeas" target="_blank" rel="noopener noreferrer" data-i18n="btnGithub">Ver GitHub ↗</a>
                 </div>
-                <div class="hero-signature"><span class="signature-line"></span> CURIOSIDAD, CÓDIGO Y CREATIVIDAD.</div>
+                <div class="hero-signature"><span class="signature-line"></span> <span data-i18n="heroSignature">CURIOSIDAD, CÓDIGO Y CREATIVIDAD.</span></div>
             </div>
 
+            <!-- * ------ Figura de televisión retro interactiva ------ -->
             <div class="hero-art" aria-label="Retrato de Ian Francano en televisor retro">
                 <div class="art-orbit orbit-one"></div>
                 <div class="art-orbit orbit-two"></div>
                 <div class="art-spark spark-one">✦</div>
                 <div class="art-spark spark-two">✧</div>
 
-                <!-- TELEVISIÓN TRADICIONAL RETRO -->
-                <div class="retro-tv">
+                <div class="retro-tv" id="retro-tv" tabindex="0" title="Clic para cambiar de canal">
                     <div class="tv-antennas" aria-hidden="true">
-                        <span class="antenna left"></span>
-                        <span class="antenna right"></span>
-                        <span class="antenna-base"></span>
+                        <svg class="tv-antennas-svg" viewBox="0 0 210 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- * ------ Antena izquierda ------ -->
+                            <g class="antenna-left">
+                                <path d="M98 80 C80 38, 38 6, 14 40" stroke="#5E5A55" stroke-width="4.2" stroke-linecap="round"/>
+                                <circle cx="14" cy="40" r="6" fill="#86817C" stroke="#56504B" stroke-width="2.2"/>
+                            </g>
+                            <!-- * ------ Antena derecha ------ -->
+                            <g class="antenna-right">
+                                <path d="M112 80 L146 10 L188 26" stroke="#5E5A55" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="188" cy="26" r="6" fill="#86817C" stroke="#56504B" stroke-width="2.2"/>
+                            </g>
+                            <!-- * ------ Base de antenas ------ -->
+                            <path d="M78 90 C78 76, 132 76, 132 90 Z" fill="#56504B" stroke="#86817C" stroke-width="1.6"/>
+                        </svg>
                     </div>
+
                     <div class="tv-cabinet">
                         <div class="tv-bezel">
                             <div class="tv-screen">
-                                <img src="img/ProfileImg.JPG" alt="Retrato de Ian Francano">
+                                <img id="tv-screen-img" src="img/FramesTV/FrameTv1.jpg" alt="Retrato de Ian Francano">
                                 <div class="tv-scanlines" aria-hidden="true"></div>
                                 <div class="tv-glare" aria-hidden="true"></div>
                             </div>
                         </div>
+
                         <div class="tv-controls" aria-hidden="true">
-                            <div class="tv-dial"></div>
+                            <div class="tv-dial" id="tv-dial-main"></div>
                             <div class="tv-dial"></div>
                             <div class="tv-speaker">
-                                <span></span><span></span><span></span><span></span><span></span>
+                                <span></span><span></span><span></span><span></span>
                             </div>
                             <div class="tv-power-led"></div>
                         </div>
                     </div>
-                    <div class="tv-legs" aria-hidden="true">
-                        <span></span>
-                        <span></span>
-                    </div>
                 </div>
 
-                <div class="art-caption"><span>CH 01 / CREADOR</span><span>IAN FRANCANO</span></div>
+                <div class="art-caption"><span id="tv-channel-label">CH 01 / CREADOR</span><span>IAN FRANCANO</span></div>
             </div>
             <div class="hero-index" aria-hidden="true">TVCI — 001</div>
         </section>
 
-        <!-- DIVISOR ENTRE SECCIONES -->
-        <div class="section-divider" aria-hidden="true">
-            <span>✦</span>
-        </div>
+        <div class="section-divider" aria-hidden="true"><span>✦</span></div>
 
-        <!-- ------ PROYECTOS / DEMOS ------ -->
+        <!-- ? ------ Sección 01: Proyectos y demos ------ -->
         <section class="star-system-section" id="proyectos">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">TRABAJO SELECCIONADO</p>
-                    <h2 class="section-title">Proyectos en <span>escena.</span></h2>
+                    <p class="eyebrow" data-i18n="proyEyebrow">TRABAJO SELECCIONADO</p>
+                    <h2 class="section-title"><span data-i18n="proyTitle1">Proyectos en</span> <span class="title-accent" data-i18n="proyTitle2">escena.</span></h2>
                 </div>
-                <span class="section-number">01 — 03</span>
+                <span class="section-number">01 — 05</span>
             </div>
-            <p class="section-subtitle">Cada proyecto es una idea distinta. Elegí uno para conocerlo en funcionamiento.</p>
+            <p class="section-subtitle" data-i18n="proySub">Cada proyecto es una idea distinta. Elegí uno para conocerlo en funcionamiento.</p>
 
-            <!-- Inyectado dinámicamente desde data/demos.json -->
+            <!-- * ------ Inyectado dinámicamente desde data/demos.json ------ -->
             <div id="grid-demos" class="star-grid" aria-live="polite"></div>
         </section>
 
-        <!-- DIVISOR ENTRE SECCIONES -->
-        <div class="section-divider" aria-hidden="true">
-            <span>✦</span>
-        </div>
+        <div class="section-divider" aria-hidden="true"><span>✦</span></div>
 
-        <!-- ------ REDES / CONTACTO ------ -->
+        <!-- ? ------ Sección 02: Stack técnico ------ -->
+        <section class="star-system-section" id="stack">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" data-i18n="stackEyebrow">HERRAMIENTAS Y TECNOLOGÍAS</p>
+                    <h2 class="section-title"><span data-i18n="stackTitle1">Stack</span> <span class="title-accent" data-i18n="stackTitle2">técnico.</span></h2>
+                </div>
+                <span class="section-number">02 — 05</span>
+            </div>
+            <p class="section-subtitle" data-i18n="stackSub">Tecnologías, entornos y metodologías con las que construyo aplicaciones web, sistemas backend y videojuegos.</p>
+
+            <div class="stack-grid">
+                <article class="stack-card">
+                    <span class="stack-category" data-i18n="stackCat1">01 // DESARROLLO</span>
+                    <h3 data-i18n="stackCard1">Lenguajes & Frameworks</h3>
+                    <div class="chip-list">
+                        <span class="tech-chip">HTML5</span>
+                        <span class="tech-chip">CSS3</span>
+                        <span class="tech-chip">JavaScript</span>
+                        <span class="tech-chip">Angular</span>
+                        <span class="tech-chip">Java</span>
+                        <span class="tech-chip">Spring Boot</span>
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">C</span>
+                        <span class="tech-chip">PHP</span>
+                    </div>
+                </article>
+
+                <article class="stack-card">
+                    <span class="stack-category" data-i18n="stackCat2">02 // DATOS & ENTORNO</span>
+                    <h3 data-i18n="stackCard2">Bases de Datos & Tools</h3>
+                    <div class="chip-list">
+                        <span class="tech-chip">MySQL</span>
+                        <span class="tech-chip">Git & GitHub</span>
+                        <span class="tech-chip">APIs REST / JSON</span>
+                        <span class="tech-chip">Swagger</span>
+                        <span class="tech-chip">Thymeleaf</span>
+                        <span class="tech-chip">VS Code</span>
+                        <span class="tech-chip">IntelliJ IDEA</span>
+                    </div>
+                </article>
+
+                <article class="stack-card">
+                    <span class="stack-category" data-i18n="stackCat3">03 // FLUJO DE TRABAJO</span>
+                    <h3 data-i18n="stackCard3">Metodologías & Perfil</h3>
+                    <div class="chip-list">
+                        <span class="tech-chip">Scrum</span>
+                        <span class="tech-chip">Kanban</span>
+                        <span class="tech-chip" data-i18n="chipMvc">Arquitectura MVC</span>
+                        <span class="tech-chip" data-i18n="chipResp">Diseño Responsivo</span>
+                        <span class="tech-chip" data-i18n="chipEng">Inglés Intermedio</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"><span>✦</span></div>
+
+        <!-- ? ------ Sección 03: Experiencia y formación ------ -->
+        <section class="star-system-section" id="trayectoria">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" data-i18n="trayEyebrow">RECORRIDO PROFESIONAL Y ACADÉMICO</p>
+                    <h2 class="section-title"><span data-i18n="trayTitle1">Experiencia &</span> <span class="title-accent" data-i18n="trayTitle2">formación.</span></h2>
+                </div>
+                <span class="section-number">03 — 05</span>
+            </div>
+
+            <!-- * ------ Inyectado dinámicamente en #grid-trayectoria ------ -->
+            <div id="grid-trayectoria" class="timeline-grid" aria-live="polite"></div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"><span>✦</span></div>
+
+        <!-- ? ------ Sección 04: Títulos y certificados ------ -->
+        <section class="star-system-section" id="titulos">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow" data-i18n="titEyebrow">ACREDITACIONES Y CERTIFICADOS</p>
+                    <h2 class="section-title"><span data-i18n="titTitle1">Títulos</span> <span class="title-accent" data-i18n="titTitle2">obtenidos.</span></h2>
+                </div>
+                <span class="section-number">04 — 05</span>
+            </div>
+            <p class="section-subtitle" data-i18n="titSub">Tocá cualquiera de los títulos para visualizar su documento PDF en ventana modal.</p>
+
+            <!-- * ------ Inyectado dinámicamente en #grid-titulos ------ -->
+            <div id="grid-titulos" class="diplomas-grid" aria-live="polite"></div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"><span>✦</span></div>
+
+        <!-- ? ------ Sección 05: Redes y contacto ------ -->
         <section class="star-system-section social-section" id="redes">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">FUERA DE ESCENA</p>
-                    <h2 class="section-title">Sigamos en <span>contacto.</span></h2>
+                    <p class="eyebrow" data-i18n="redEyebrow">FUERA DE ESCENA</p>
+                    <h2 class="section-title"><span data-i18n="redTitle1">Sigamos en</span> <span class="title-accent" data-i18n="redTitle2">contacto.</span></h2>
                 </div>
-                <span class="section-number">02 — 03</span>
+                <span class="section-number">05 — 05</span>
             </div>
             <div class="social-star-cluster">
                 <a href="https://linkedin.com/in/ianfrancano" target="_blank" rel="noopener noreferrer" class="star-node-link social-linkedin">
-                    <span class="social-icon">in</span><span class="star-label">LinkedIn <small>Profesional</small></span><span class="social-arrow">↗</span>
+                    <span class="social-icon">in</span><span class="star-label">LinkedIn <small data-i18n="socLinkedin">Profesional</small></span><span class="social-arrow">↗</span>
                 </a>
                 <a href="https://github.com/TvConIdeas" target="_blank" rel="noopener noreferrer" class="star-node-link social-github">
-                    <span class="social-icon">⌘</span><span class="star-label">GitHub <small>Repositorios</small></span><span class="social-arrow">↗</span>
+                    <span class="social-icon">⌘</span><span class="star-label">GitHub <small data-i18n="socGithub">Repositorios</small></span><span class="social-arrow">↗</span>
                 </a>
                 <a href="https://instagram.com/francanoiannn" target="_blank" rel="noopener noreferrer" class="star-node-link social-instagram">
-                    <span class="social-icon">◎</span><span class="star-label">Instagram <small>Personal</small></span><span class="social-arrow">↗</span>
+                    <span class="social-icon">◎</span><span class="star-label">Instagram <small data-i18n="socInstagram">Personal</small></span><span class="social-arrow">↗</span>
                 </a>
             </div>
         </section>
 
-        <div class="closing-note"><span>✦</span> GRACIAS POR PASAR A VER MI TRABAJO <span>✦</span></div>
+        <div class="closing-note"><span>✦</span> <span class="note-text" data-i18n="closingQuote">HAZLO O NO LO HAGAS, PERO NO LO INTENTES — YODA</span> <span>✦</span></div>
     </main>
 
-    <!-- ------ FOOTER ------ -->
+    <!-- ! ------ MODAL VISOR DE PDF ------ -->
+    <div class="pdf-modal" id="pdf-modal" role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title" hidden>
+        <div class="pdf-modal-backdrop" id="pdf-modal-backdrop"></div>
+        <div class="pdf-modal-dialog">
+            <div class="pdf-modal-header">
+                <div>
+                    <span class="pdf-modal-meta" id="pdf-modal-meta">DOCUMENTO OFICIAL</span>
+                    <h3 id="pdf-modal-title">Título</h3>
+                </div>
+                <div class="pdf-modal-actions">
+                    <a id="pdf-external-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-pdf-open">Abrir PDF ↗</a>
+                    <button type="button" class="btn-pdf-close" id="pdf-modal-close" aria-label="Cerrar modal">✕</button>
+                </div>
+            </div>
+            <div class="pdf-modal-body">
+                <iframe id="pdf-iframe" src="" title="Vista previa del título en PDF" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- ! ------ FOOTER ------ -->
     <footer class="footer container">
         <p>TvConIdeas <span>—</span> Ian Francano</p>
-        <p>Hecho con intención en Mar del Plata, Buenos Aires <span>✦</span></p>
+        <p><span class="footer-quote" data-i18n="footerQuote">Hazlo o no lo hagas, pero no lo intentes, Yoda</span> <span>✦</span></p>
     </footer>
 
+    <!-- * ------ Script principal ------ -->
     <script src="js/app.js"></script>
 </body>
 </html>

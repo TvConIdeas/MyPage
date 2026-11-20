@@ -1,0 +1,273 @@
+/* ! ------ BOTÓN DE IDIOMA ------ */
+.btn-lang {
+    padding: 0.76rem 0.9rem;
+    border-radius: 0.85rem;
+    border: 1px solid var(--slate-border);
+    background: rgba(67, 72, 82, 0.25);
+    color: var(--mg-cream);
+    font: 700 0.78rem var(--font-mono);
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.45s var(--ease-fluid), border-color 0.42s var(--ease-fluid), background-color 0.42s var(--ease-fluid);
+}
+
+.btn-lang:hover,
+.btn-lang:focus-visible {
+    transform: translate3d(0, -2px, 0);
+    border-color: var(--bordeaux-border-bright);
+    background: rgba(47, 107, 59, 0.35);
+}
+
+/* ! ------ TÍTULOS Y CERTIFICADOS ------ */
+.diplomas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: 1.35rem;
+    margin-top: 0.6rem;
+}
+
+.diploma-card {
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid var(--slate-border);
+    background: linear-gradient(155deg, rgba(67, 72, 82, 0.2), rgba(10, 14, 12, 0.96));
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.5s var(--ease-fluid), border-color 0.48s var(--ease-fluid), box-shadow 0.5s var(--ease-fluid);
+}
+
+.diploma-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    font: 500 0.68rem var(--font-mono);
+    color: var(--text-dim);
+}
+
+.diploma-code {
+    color: var(--mg-cream);
+    padding: 0.3rem 0.65rem;
+    border-radius: 0.45rem;
+    border: 1px solid var(--bordeaux-border);
+    background: rgba(47, 107, 59, 0.24);
+}
+
+.diploma-card h3 {
+    color: var(--mg-cream);
+    font: 700 1.2rem var(--font-display);
+    margin-bottom: 0.35rem;
+}
+
+.diploma-institution {
+    color: #9bc4a2;
+    font-size: 0.84rem;
+    font-weight: 600;
+    margin-bottom: 0.55rem;
+}
+
+.diploma-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+}
+
+.diploma-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(250, 249, 242, 0.08);
+    color: var(--mg-cream);
+    font-size: 0.8rem;
+    font-weight: 800;
+    transition: color 0.42s var(--ease-fluid), border-color 0.42s var(--ease-fluid);
+}
+
+.diploma-card:hover,
+.diploma-card:focus-visible {
+    transform: translate3d(0, -6px, 0);
+    border-color: var(--bordeaux-border-bright);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.6), 0 0 24px rgba(47, 107, 59, 0.22);
+}
+
+.diploma-card:hover .diploma-cta,
+.diploma-card:focus-visible .diploma-cta {
+    color: #ffffff;
+    border-top-color: rgba(98, 168, 111, 0.28);
+}
+
+/* ! ------ MODAL VISOR DE PDF ------ */
+.pdf-modal[hidden] {
+    display: none;
+}
+
+.pdf-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+}
+
+.pdf-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 6, 5, 0.84);
+}
+
+.pdf-modal-dialog {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 64rem);
+    height: min(88dvh, 48rem);
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.35rem;
+    border: 1px solid var(--bordeaux-border-bright);
+    background: #0d120f;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+    overflow: hidden;
+}
+
+.pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.4rem;
+    border-bottom: 1px solid var(--slate-border);
+    background: #121914;
+}
+
+.pdf-modal-meta {
+    display: block;
+    font: 500 0.66rem var(--font-mono);
+    letter-spacing: 0.12em;
+    color: #9bc4a2;
+    margin-bottom: 0.2rem;
+}
+
+.pdf-modal-header h3 {
+    color: var(--mg-cream);
+    font: 700 1.1rem var(--font-display);
+}
+
+.pdf-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.btn-pdf-open {
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.65rem;
+    background: var(--mg-bordeaux-crimson);
+    color: var(--mg-cream);
+    font-size: 0.78rem;
+    font-weight: 800;
+    transform: translate3d(0, 0, 0);
+    transition: background-color 0.42s var(--ease-fluid), transform 0.42s var(--ease-fluid);
+}
+
+.btn-pdf-open:hover,
+.btn-pdf-open:focus-visible {
+    background: #3c8249;
+    transform: translate3d(0, -1.5px, 0);
+}
+
+.btn-pdf-close {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.65rem;
+    border: 1px solid var(--slate-border);
+    background: rgba(67, 72, 82, 0.28);
+    cursor: pointer;
+    font-size: 0.95rem;
+    transform: scale(1);
+    transition: background-color 0.42s var(--ease-fluid), border-color 0.42s var(--ease-fluid), transform 0.42s var(--ease-fluid);
+}
+
+.btn-pdf-close:hover,
+.btn-pdf-close:focus-visible {
+    background: rgba(47, 107, 59, 0.45);
+    border-color: var(--bordeaux-border-bright);
+    transform: scale(1.05);
+}
+
+.pdf-modal-body {
+    flex: 1;
+    background: #08080a;
+}
+
+.pdf-modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* ! ------ RESPONSIVE E IPHONE ------ */
+@media (max-width: 1024px) {
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.78rem; }
+}
+
+@media (max-width: 900px) {
+    .stack-grid,
+    .timeline-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .stars-layer { animation: none; }
+    .header { padding-block: 1rem; }
+    .nav-content { gap: 0.7rem; padding: 0.8rem 1rem; }
+    .nav-links { gap: 0.85rem; margin: 0 0.2rem 0 auto; }
+    .nav-links a { font-size: 0.75rem; }
+    .btn-whatsapp { padding: 0.75rem 1rem; gap: 0.5rem; font-size: 0.78rem; }
+    .btn-lang { padding: 0.7rem 0.75rem; font-size: 0.74rem; }
+    .constellation-hero { grid-template-columns: 1fr; padding: 2rem; }
+    .hero-copy { max-width: none; }
+    .hero-copy > .eyebrow { margin-top: 1.8rem; }
+    .main-universe { gap: 4.2rem; padding-top: 1rem; }
+    .social-star-cluster { grid-template-columns: 1fr; }
+    .pdf-modal-dialog { height: 84dvh; }
+}
+
+@media (max-width: 480px) {
+    .container { width: min(92%, 76rem); }
+    .nav-content { flex-wrap: wrap; }
+    .logo-text { font-size: 1rem; }
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding-top: 0.6rem;
+        border-top: 1px solid rgba(250, 249, 242, 0.08);
+    }
+    .nav-acciones { margin-left: auto; }
+    .constellation-hero { padding: 1.5rem; border-radius: 1.1rem; }
+    .constellation-hero h1 { font-size: clamp(2.4rem, 12vw, 3.4rem); }
+    .hero-description { font-size: 0.92rem; }
+    .hero-signature { margin-top: 2rem; font-size: 0.55rem; }
+    .hero-index { display: none; }
+    .section-heading { align-items: start; }
+    .section-number { font-size: 0.58rem; white-space: nowrap; }
+    .social-section { padding: 1.3rem; }
+    .pdf-modal { padding: 0.75rem; }
+    .pdf-modal-header { flex-direction: column; align-items: flex-start; }
+    .footer { flex-direction: column; text-align: center; }
+    .closing-note { font-size: 0.55rem; letter-spacing: 0.09em; }
+}

@@ -1,23 +1,17 @@
 [
     {
-        "estrella": "★ SECTOR 01",
-        "titulo": "Catálogo Digital & WhatsApp",
-        "etiqueta": "E-Commerce",
-        "descripcion": "Sistema de pedidos directos optimizado para negocios locales sin comisiones intermedias.",
-        "linkDemo": "#"
-    },
-    {
-        "estrella": "★ SECTOR 02",
+        "estrella": {
+            "es": "★ SECTOR 01",
+            "en": "★ SECTOR 01"
+        },
         "titulo": "Web Vault Channels",
         "etiqueta": "Retro UI",
-        "descripcion": "Biblioteca interactiva de ports y clásicos web con diseño responsivo y bilingüe.",
+        "imagen": "img/Projects/proyecto-webvault.jpg",
+        "descripcion": {
+            "es": "Biblioteca interactiva de ports y clásicos web inspirada en consolas retro, con diseño responsivo y bilingüe.",
+            "en": "Interactive library of web ports and classics inspired by retro consoles, featuring a responsive and bilingual design."
+        },
+        "tecnologias": ["HTML5", "CSS3", "JavaScript", "JSON"],
         "linkDemo": "https://tvconideas.github.io/Web-Vault-Channels/"
-    },
-    {
-        "estrella": "★ SECTOR 03",
-        "titulo": "Landing Profesional",
-        "etiqueta": "Corporativo",
-        "descripcion": "Diseños minimalistas y limpios orientados a la conversión directa de clientes.",
-        "linkDemo": "#"
     }
 ]

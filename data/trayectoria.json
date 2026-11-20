@@ -1,0 +1,112 @@
+{
+    "experiencia": [
+        {
+            "periodo": {
+                "es": "2024 — ACTUALIDAD",
+                "en": "2024 — PRESENT"
+            },
+            "titulo": {
+                "es": "Programador Freelance",
+                "en": "Freelance Programmer"
+            },
+            "descripcion": {
+                "es": "Desarrollo de páginas web, aplicaciones de gestión con roles y videojuegos, con foco en código limpio, arquitectura ordenada y experiencia de usuario.",
+                "en": "Development of websites, role-based management applications, and video games, focused on clean code, structured architecture, and user experience."
+            },
+            "enCurso": true
+        },
+        {
+            "periodo": {
+                "es": "2022 — ACTUALIDAD",
+                "en": "2022 — PRESENT"
+            },
+            "titulo": {
+                "es": "Mi Servicio PC · Servicio Técnico",
+                "en": "Mi Servicio PC · Technical Support"
+            },
+            "descripcion": {
+                "es": "Diagnóstico y resolución de problemas técnicos, asesoramiento personalizado, gestión de pedidos y armado de presupuestos a medida.",
+                "en": "Technical troubleshooting and diagnostics, personalized customer advice, order management, and tailored quotes."
+            },
+            "enCurso": true
+        }
+    ],
+    "formacion": [
+        {
+            "periodo": {
+                "es": "2026 — ACTUALIDAD",
+                "en": "2026 — PRESENT"
+            },
+            "titulo": {
+                "es": "Ingeniería Informática",
+                "en": "Computer Engineering"
+            },
+            "institucion": {
+                "es": "Universidad Nacional de Mar del Plata (UNMDP)",
+                "en": "National University of Mar del Plata (UNMDP)"
+            },
+            "descripcion": {
+                "es": "Carrera de grado en curso.",
+                "en": "Undergraduate engineering degree in progress."
+            },
+            "enCurso": true
+        },
+        {
+            "periodo": {
+                "es": "2024 — 2025",
+                "en": "2024 — 2025"
+            },
+            "titulo": {
+                "es": "Tecnicatura Universitaria en Programación",
+                "en": "University Technician in Programming"
+            },
+            "institucion": {
+                "es": "Universidad Tecnológica Nacional (UTN)",
+                "en": "National Technological University (UTN)"
+            },
+            "descripcion": {
+                "es": "Cursada y finales aprobados completos (título en trámite).",
+                "en": "All coursework and final exams completed (degree in process)."
+            },
+            "enCurso": false
+        },
+        {
+            "periodo": {
+                "es": "2023 — 2024",
+                "en": "2023 — 2024"
+            },
+            "titulo": {
+                "es": "Programador Web Junior (Programación y PHP)",
+                "en": "Junior Web Programmer (Programming & PHP)"
+            },
+            "institucion": {
+                "es": "Instituto HILET",
+                "en": "HILET Institute"
+            },
+            "descripcion": {
+                "es": "Fundamentos de lógica, desarrollo web y backend.",
+                "en": "Fundamentals of programming logic, web development, and backend."
+            },
+            "enCurso": false
+        },
+        {
+            "periodo": {
+                "es": "2021 — 2023",
+                "en": "2021 — 2023"
+            },
+            "titulo": {
+                "es": "Secundaria Completa (Orientación en Comunicación)",
+                "en": "High School Diploma (Communication Track)"
+            },
+            "institucion": {
+                "es": "Colegio Luis Federico Leloir",
+                "en": "Luis Federico Leloir High School"
+            },
+            "descripcion": {
+                "es": "Educación secundaria finalizada.",
+                "en": "Completed secondary education."
+            },
+            "enCurso": false
+        }
+    ]
+}

@@ -1,0 +1,407 @@
+/* ! ------ CONTENEDOR DE LA FIGURA TV EN EL HERO ------ */
+.hero-art {
+    min-height: 27.5rem;
+    padding-bottom: 3.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* ? ------ Cuerpo principal y paleta del personaje ------ */
+.retro-tv {
+    /* * ------ Paleta exclusiva de la TV ------ */
+    --tv-eye: #08FF18;
+    --tv-screen-bg: #2D2A23;
+    --tv-c1: #86817C;
+    --tv-c2: #5E5A55;
+    --tv-c3: #56504B;
+    --tv-panel-dark: #1d1b17;
+
+    position: relative;
+    z-index: 2;
+    width: min(92%, 22.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: rotate(1.5deg);
+    transition: transform 0.5s var(--ease-fluid);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+}
+
+.retro-tv:hover,
+.retro-tv:focus-visible,
+.retro-tv.is-selected {
+    transform: rotate(0deg) translate3d(0, -6px, 0) scale(1.02);
+}
+
+/* ! ------ ANTENAS SVG Y REBORDE VERDE ACTIVO ------ */
+.tv-antennas {
+    width: 14.5rem;
+    height: 6.4rem;
+    margin-bottom: -6px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.tv-antennas-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.antenna-left,
+.antenna-right {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    transition: transform 0.5s var(--ease-soft-spring);
+}
+
+.antenna-left path,
+.antenna-right path,
+.antenna-left circle,
+.antenna-right circle {
+    transition: stroke 0.35s ease, fill 0.35s ease;
+}
+
+.retro-tv:hover .antenna-left,
+.retro-tv:focus-visible .antenna-left,
+.retro-tv.is-selected .antenna-left {
+    transform: rotate(-7deg);
+}
+
+.retro-tv:hover .antenna-right,
+.retro-tv:focus-visible .antenna-right,
+.retro-tv.is-selected .antenna-right {
+    transform: rotate(7deg);
+}
+
+/* ? ------ Trazo verde neón al seleccionar o pasar el cursor ------ */
+.antenna-left:hover path,
+.antenna-right:hover path,
+.retro-tv:hover .antenna-left path,
+.retro-tv:hover .antenna-right path,
+.retro-tv:focus-visible .antenna-left path,
+.retro-tv:focus-visible .antenna-right path,
+.retro-tv.is-selected .antenna-left path,
+.retro-tv.is-selected .antenna-right path {
+    stroke: var(--tv-eye);
+}
+
+.antenna-left:hover circle,
+.antenna-right:hover circle,
+.retro-tv:hover .antenna-left circle,
+.retro-tv:hover .antenna-right circle,
+.retro-tv:focus-visible .antenna-left circle,
+.retro-tv:focus-visible .antenna-right circle,
+.retro-tv.is-selected .antenna-left circle,
+.retro-tv.is-selected .antenna-right circle {
+    stroke: var(--tv-eye);
+    fill: var(--tv-screen-bg);
+}
+
+/* ! ------ CARCASA, BISEL Y PANTALLA CRT ------ */
+.tv-cabinet {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0.9rem;
+    border-radius: 1.45rem;
+    background: linear-gradient(155deg, var(--tv-c1) 0%, var(--tv-c2) 58%, var(--tv-c3) 100%);
+    border: 2px solid var(--tv-c1);
+    box-shadow:
+        0 24px 50px rgba(0, 0, 0, 0.72),
+        inset 0 2px 3px rgba(250, 249, 242, 0.16),
+        inset 0 -5px 12px rgba(0, 0, 0, 0.45);
+    transition: border-color 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid);
+}
+
+.retro-tv:hover .tv-cabinet,
+.retro-tv:focus-visible .tv-cabinet,
+.retro-tv.is-selected .tv-cabinet {
+    border-color: var(--tv-eye);
+    box-shadow:
+        0 24px 52px rgba(0, 0, 0, 0.78),
+        0 0 20px rgba(8, 255, 24, 0.16),
+        inset 0 2px 3px rgba(250, 249, 242, 0.18);
+}
+
+.tv-bezel {
+    background: var(--tv-c3);
+    padding: 0.48rem;
+    border-radius: 1.1rem;
+    border: 2px solid var(--tv-c2);
+}
+
+.tv-screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3.2;
+    border-radius: 1.2rem / 1rem;
+    overflow: hidden;
+    background: var(--tv-screen-bg);
+}
+
+.tv-screen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.35s ease, transform 0.6s var(--ease-fluid);
+}
+
+.tv-screen img.is-switching {
+    opacity: 0.45;
+}
+
+.retro-tv:hover .tv-screen img {
+    transform: scale(1.04);
+}
+
+/* * ------ Efecto de líneas CRT y reflejo de vidrio ------ */
+.tv-scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 2px,
+            rgba(45, 42, 35, 0.22) 3px,
+            rgba(45, 42, 35, 0.22) 4px
+        ),
+        radial-gradient(circle at center, transparent 60%, rgba(45, 42, 35, 0.48) 100%);
+}
+
+.tv-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(125deg, rgba(250, 249, 242, 0.12) 0%, rgba(250, 249, 242, 0.02) 35%, transparent 55%);
+}
+
+/* ! ------ PANEL INFERIOR COMPACTO Y OSCURO ------ */
+.tv-controls {
+    align-self: center;
+    width: 86%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.55rem;
+    padding: 0.36rem 0.65rem;
+    background: linear-gradient(180deg, var(--tv-panel-dark) 0%, #14120f 100%);
+    border-radius: 0.72rem;
+    border: 1px solid var(--tv-c3);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.65);
+}
+
+/* ? ------ Perillas, parlante y LED de encendido ------ */
+.tv-dial {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, var(--tv-c2), var(--tv-c3) 65%, var(--tv-screen-bg));
+    border: 1.5px solid var(--tv-c1);
+    position: relative;
+    transition: transform 0.45s var(--ease-soft-spring), border-color 0.35s ease;
+}
+
+.tv-dial::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.5px;
+    height: 4px;
+    background: var(--tv-c1);
+    border-radius: 2px;
+}
+
+.tv-dial:nth-child(2) {
+    transform: rotate(55deg);
+    background: radial-gradient(circle at 35% 35%, var(--tv-c3), var(--tv-screen-bg));
+    border-color: var(--tv-c2);
+}
+
+.retro-tv:hover .tv-dial {
+    border-color: rgba(8, 255, 24, 0.65);
+}
+
+.tv-speaker {
+    flex: 1;
+    max-width: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5px;
+}
+
+.tv-speaker span {
+    display: block;
+    height: 1.5px;
+    background: var(--tv-c3);
+    border-radius: 2px;
+}
+
+.tv-power-led {
+    width: 6px;
+    height: 6px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--tv-eye);
+    box-shadow: 0 0 8px var(--tv-eye);
+}
+
+/* ! ------ ÓRBITAS, ESTRELLAS VERDES Y PIE DE CÁMARA ------ */
+.art-orbit {
+    position: absolute;
+    width: 24rem;
+    aspect-ratio: 1;
+    border: 1px solid rgba(78, 143, 90, 0.32);
+    border-radius: 50%;
+    transform: rotate(-25deg) scaleY(0.48);
+    animation: rotate-orbit 34s linear infinite;
+    pointer-events: none;
+}
+
+.orbit-two {
+    width: 28.5rem;
+    transform: rotate(35deg) scaleY(0.45);
+    border-color: rgba(67, 72, 82, 0.34);
+    animation: rotate-orbit 44s linear infinite reverse;
+}
+
+@keyframes rotate-orbit {
+    from { transform: rotate(0deg) scaleY(0.48); }
+    to { transform: rotate(360deg) scaleY(0.48); }
+}
+
+/* ? ------ Estrellas separadas de la TV en color verde ------ */
+.art-spark {
+    position: absolute;
+    z-index: 3;
+    color: #08FF18;
+    text-shadow: 0 0 12px rgba(8, 255, 24, 0.45);
+    pointer-events: none;
+}
+
+.spark-one {
+    top: -1.1rem;
+    right: -1.1rem;
+    font-size: 2rem;
+}
+
+.spark-two {
+    bottom: 2.4rem;
+    left: -1.2rem;
+    font-size: 2.3rem;
+}
+
+/* ? ------ Texto inferior de canal y autor ------ */
+.art-caption {
+    position: absolute;
+    bottom: 0.25rem;
+    left: 6%;
+    right: 6%;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font: 500 0.62rem var(--font-mono);
+    letter-spacing: 0.14em;
+}
+
+/* ! ------ ADAPTACIÓN RESPONSIVA DE LA TV (TABLET E IPHONE) ------ */
+@media (max-width: 768px) {
+    .art-orbit {
+        animation: none;
+    }
+
+    .hero-art {
+        min-height: 24.5rem;
+        padding-bottom: 3rem;
+        margin-top: 0.5rem;
+    }
+
+    .retro-tv {
+        width: min(86%, 19.5rem);
+    }
+
+    .tv-antennas {
+        width: 12.6rem;
+        height: 5.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-art {
+        min-height: 22rem;
+        padding-bottom: 2.8rem;
+    }
+
+    .retro-tv {
+        width: min(90%, 17.5rem);
+    }
+
+    .tv-antennas {
+        width: 11.4rem;
+        height: 5rem;
+    }
+
+    .tv-cabinet {
+        padding: 0.68rem;
+        gap: 0.45rem;
+        border-radius: 1.2rem;
+    }
+
+    .tv-bezel {
+        padding: 0.38rem;
+        border-radius: 0.92rem;
+    }
+
+    .tv-controls {
+        width: 88%;
+        padding: 0.3rem 0.52rem;
+        gap: 0.45rem;
+    }
+
+    .tv-dial {
+        width: 1.05rem;
+        height: 1.05rem;
+    }
+
+    .art-orbit {
+        width: 16.5rem;
+    }
+
+    .orbit-two {
+        width: 19.5rem;
+    }
+
+    .spark-one {
+        top: -0.7rem;
+        right: -0.2rem;
+        font-size: 1.6rem;
+    }
+
+    .spark-two {
+        bottom: 2.3rem;
+        left: -0.2rem;
+        font-size: 1.8rem;
+    }
+
+    .art-caption {
+        bottom: 0.15rem;
+        left: 4%;
+        right: 4%;
+        font-size: 0.54rem;
+    }
+}
